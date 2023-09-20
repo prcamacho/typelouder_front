@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style/main.css" type="text/css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,800;1,900;1,1000&display=swap" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+    <div class="main-container">
+        
+        <!-- BARRA LATERAL -->
+
+        <div class="lateral-var" id="lateral-var">
+
+            <div class="logo-icon" >
+                <img src="../static/imgs/byteforcelogo.png" width="60px"/>
+            </div>
+
+            <div class="container-servers">
+                <div class="server-icon">
+                </div>
+            </div>
+
+            <div class="add-search-icon">   
+                <div class="add-icon">
+                    <img src="../static/imgs/iconadd.png" width="50x"/>
+                </div>
+                <div class="search-icon">
+                    <img src="../static/imgs/iconsearch.png" width="50x"/>
+                </div>
+                    <!-- Agregar la ventana emergente aquí -->
+                <div id="ventanaEmergente" class="ventana-emergente">
+                    <!-- Contenido de la ventana emergente -->
+                </div>
+            </div>
+        
+        </div>
+
+        <!-- SECCION MEDIA -->
+
+        <div class="seccion-media">
+
+            <div class="contenedor-titulo">
+                    <h4 class="titulo-servidor"></h4>
+                    <img class="flecha" src="../static/imgs/flecha.png"/>
+            </div>
+
+            <div class="popup-servidor">
+                <p>Invitar Gente</p>
+                <p>Editar Servidor</p>
+                <p>Abandonar Servidor</p>
+            </div>
+
+            <div class="contenedor-canales">
+                <h3 class="canales-clickleables" id="canal0">~ Bienvenido</h3>
+                <h3 class="titulo-canal">~ Canales</h3>
+                <div class="canales">
+                     
+                </div>
+            </div>
+
+            <div class="popup-usuario">
+                <div class="img-user">
+                    <img src="../static/imgs/iconperfil.png" alt="" width="90x" height="90px">
+                    <img src="../static/imgs/editar.png" class="boton-editar" alt="" width="30x" height="30px">
+                </div>
+                <div class="contenido-usuario">
+                    <div class="username-nombre">
+                        <h3 class="username-card"></h3>
+                        <h5 class="nombre-apellido-card"></h5>
+                    </div>
+                    <hr>
+                    <h4 class="email-card"></h4>
+                    <hr>
+                    <h4 class="cerrar-sesion">Cerrar Sesión</h4>
+                </div>
+            </div>
+            <div class="contenedor-usuario">
+                <img src="../static/imgs/iconperfil.png" class="imagen-usuario" width="60x" height="60px"/>
+                <div class="datos-usuario">
+                    <h3 class="username-usuario"></h3>
+                    <h5 class="nombre-usuario"></h5>
+                </div>
+                <img class="flecha-usuario" src="../static/imgs/flecha.png"/>
+            </div>
+        </div>
+
+        <!-- SECCION DERECHA -->
+
+        <div class="servidor-search">
+            <input class="container-buscador" type="text" id="nombre" name="nombre" placeholder="BUSCAR UN SERVIDOR">
+            <div class="container-lista-servidor">
+                
+                <div class="server-buscado">
+                    <div class="server-buscado-img" >
+                        <img src="../static/imgs/servericon.png" width="150px" height="150px"/>
+                    </div>
+
+                    <div class="name-des-servidor">
+                        <label class="title-ser-bus">NOMBRE SERVIDOR</label>
+                        <label class="des-ser-bus">SERVIDOR DEDICADO A VIDEOJUEGOS PELICULAS Y MUCHO MAS</label>
+                    </div>
+
+                    <div>
+                        <img src="../static/imgs/iconaddwhite.png" width="100%" height="100%"/>
+                    </div>
+
+                </div>
+                <div class="server-buscado">
+                    <div class="server-buscado-img">
+                        <img src="../static/imgs/servericon.png" width="150px" height="150px"/>
+                    </div>
+
+                    <div class="name-des-servidor">
+                        <label class="title-ser-bus">NOMBRE SERVIDOR</label>
+                        <label class="des-ser-bus">SERVIDOR DEDICADO A VIDEOJUEGOS PELICULAS Y MUCHO MAS</label>
+                    </div>
+
+                    <div>
+                        <img src="../static/imgs/iconaddwhite.png" width="100%" height="100%"/>
+                    </div>
+
+                </div>
+                <div class="server-buscado">
+                    <div class="server-buscado-img">
+                        <img src="../static/imgs/servericon.png" width="150px" height="150px"/>
+                    </div>
+
+                    <div class="name-des-servidor">
+                        <label class="title-ser-bus">NOMBRE SERVIDOR</label>
+                        <label class="des-ser-bus">SERVIDOR DEDICADO A VIDEOJUEGOS PELICULAS Y MUCHO MAS</label>
+                    </div>
+
+                    <div>
+                        <img src="../static/imgs/iconaddwhite.png" width="100%" height="100%"/>
+                    </div>
+
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="../js/main.js"></script>
+    
+</body>
+</html>

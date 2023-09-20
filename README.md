@@ -1,1 +1,2 @@
-# typelouder_front
+# typelouder
+Proyecto Final para Programación 2 

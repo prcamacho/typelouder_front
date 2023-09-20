@@ -1,0 +1,502 @@
+html, body {
+    height: 100vh;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .main-container{
+    display: flex;
+    align-items: flex-start;
+    background: var(--darkweb-b-2, #011640);
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    /* overflow-y: auto; */
+  }
+
+  /* .main-container::-webkit-scrollbar {
+    width: 0 !important; /* Oculta las barras de desplazamiento en navegadores WebKit (Chrome, Safari, etc.) 
+  } */
+
+  /*BARRA LAETERAL IZQUIERDA*/
+
+.lateral-var{
+    display: flex;
+    min-width: 80px;
+    width: 80px;
+    height: 100vh;
+    flex-direction: column;
+    align-items: center;
+    /* align-self: stretch; */
+    background: var(--darkweb-b-3, #010314);
+    position: sticky;
+}
+
+.logo-icon{
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  border-bottom-left-radius: 50%; /* Radio de esquina inferior izquierda */
+  border-bottom-right-radius: 50%;
+}
+
+.logo-icon:hover{
+  cursor: pointer;
+  transition: 300ms;
+  transform: scale(1.2);
+  transform-origin: center center;
+}
+
+.container-servers{
+  padding: 10px 0;
+  width: 100%;
+  height: 72vh;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto;
+  background: var(--darkweb-b-3, #010626);
+  border-bottom-left-radius: 50px; /* Radio de esquina inferior izquierda */
+  border-bottom-right-radius: 50px;
+  border-top-left-radius: 50px;
+  border-top-right-radius: 50px;
+}
+
+.container-servers::-webkit-scrollbar {
+  width: 0 !important; /* Oculta las barras de desplazamiento en navegadores WebKit (Chrome, Safari, etc.) */
+}
+
+.server-icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  overflow: hidden;  /*segurarse de que la imagen se ajuste al borde redondeado */
+}
+
+.server-icon img {
+  width: 60px; /* Ajustar la imagen al 100% del ancho del contenedor */
+  min-height: 60px; /* Mantener la proporción de la imagen */
+  border-radius: 50%; /* Heredar el border-radius del contenedor */
+}
+
+.server-icon img:hover{
+  cursor: pointer;
+  transition: 300ms;
+  transform: scale(1.2);
+  transform-origin: center center;
+}
+
+.add-search-icon{
+  width: 100%;
+  height: 18vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.add-search-icon .add-icon:hover , .add-search-icon .search-icon:hover{
+  cursor: pointer;
+  transition: 400ms;
+  transform: scale(1.2) translateY(-5px) rotate(180deg);
+  transform-origin: center center;
+}
+
+
+
+/*SECCION MEDIA*/
+
+.seccion-media{
+    color: var(--text-c-3, #f5f5f5);
+    font-family: Nunito;
+    display: flex;
+    max-width: 250px;
+    height: 100vh;
+    flex-direction: column;
+    align-items: start;
+    background: var(--darkweb-b-3, #010a3d);
+}
+
+.contenedor-titulo{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    background-color: var(--darkweb-b-3, #010931);
+    align-items: center;
+    overflow: hidden;
+    height: 8vh;
+}
+
+.contenedor-titulo:hover{
+    cursor: pointer;
+    background-color: var(--darkweb-b-3, #031052);
+}
+
+.contenedor-titulo .titulo-servidor{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-left:15px;
+}
+
+.contenedor-titulo .flecha{
+    filter: brightness(0) invert(1);
+    width: 15px;
+    margin: auto 10px;
+
+}
+
+.contenedor-canales {
+  width: 100%;
+  height: 82vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;  
+  overflow-y: auto;
+}
+
+.contenedor-canales::-webkit-scrollbar {
+  width: 0 !important; 
+}
+
+.contenedor-canales .canales{
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.canales-clickleables{
+  padding: 15px 15px;
+  margin: 0 0;
+  cursor: pointer;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.canales-clickleables:hover{
+  border-radius: 10px;
+  background-color:#010626;
+}
+
+.contenedor-canales .titulo-canal{
+  margin: 15px 15px;
+  cursor: default;
+}
+
+.contenedor-canales .canales h4{
+  padding: 15px 15px 15px 25px;
+  cursor: pointer;
+}
+
+.canales-clickleables.clicked {
+  padding: 15px 15px;
+  margin: 0 0;
+  border-radius: 10px;
+  background-color:#010516;
+}
+
+.popup-servidor {
+  display: none;
+  background-color: var(--darkweb-b-3, #010516);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+  border-radius: 5%;
+  padding: 15px 0;
+  position: fixed;
+  background-color: var(--darkweb-b-3, #010516);
+  top: 8vh;
+  left: 80px;
+  width: 250px;
+}
+
+.popup-servidor p {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0 0 0 15px;
+  padding: 5px 0;
+}
+
+.contenedor-usuario {
+  height: 10vh;
+  max-width: 100%;
+  display: flex;
+  background-color: var(--darkweb-b-3, #010931);
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.contenedor-usuario:hover{
+  background-color: var(--darkweb-b-3, #031052);
+}
+
+.contenedor-usuario .flecha-usuario{
+  filter: brightness(0) invert(1);
+  width: 15px;
+  margin: auto 10px;
+  transform: rotate(180deg)
+}
+
+.popup-usuario {
+  display: none;
+  position: fixed;
+  background-color: var(--darkweb-b-3, #010516);
+  bottom: 10vh;
+  left: 80px;
+  width: 250px;
+  border-radius: 5%;
+}
+
+
+.img-user {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
+  background-image: linear-gradient(to right, rgba(4,19,95), #081d86, rgb(4, 19, 95));
+  /* background-color: var(--logo-b-3, #0CB1F2); */
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.boton-editar{
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+hr{
+  height: 0.1rem;
+  max-width: 100%;
+  border: 0;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #36bed9, rgba(0, 0, 0, 0)); 
+}
+
+.contenido-usuario {
+  display: block;
+  padding: 0 15px;
+}
+
+.cerrar-sesion{
+  padding: 15px 0;
+  margin: 0;
+  text-align: center;
+  cursor: pointer;
+}
+
+.cerrar-sesion:hover{
+  background-color: var(--darkweb-b-3, #031052);
+  border-radius: 5px;
+}
+
+
+.datos-usuario {
+  max-height: 10vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.datos-usuario h3, .datos-usuario h5 {
+  margin: 0 auto;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 155px;
+}
+
+
+
+/*BUSCADOR SECCION*/
+
+.servidor-search{
+    display: flex;
+    padding: 54px 40px;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    flex: 1 0 0;
+    align-self: stretch;
+    border-radius: 16px;
+    overflow-y: auto;
+  }
+
+  .servidor-search::-webkit-scrollbar {
+    width: 0 !important; /* Oculta las barras de desplazamiento en navegadores WebKit (Chrome, Safari, etc.) */
+  }
+
+  .container-buscador{
+    display: flex;
+    height: 50px;
+    padding: 10px 22px;
+    align-items: center;
+    gap: 10px;
+    align-self: stretch;
+    background: var(--darkweb-b-1, #3A5D8C);
+    border-radius: 16px;
+
+    color: var(--text-c-3, #f5f5f5);
+    /* chat/nunito semi bold 16 */
+    font-family: Nunito;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.container-buscador::placeholder{
+    color: var(--text-c-3, #acacac);
+}
+
+/*LISTA DE SERVIDORES*/
+.container-lista-servidor{
+    display: flex;
+    padding: 10px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 27px;
+    flex: 1 0 0;
+    align-self: stretch;
+}
+
+.server-buscado{
+    display: flex;
+    padding: 10px;
+    align-items: center;
+    gap: 30px;
+    border-radius: 8px;
+    background: var(--darkweb-b-1, #3A5D8C);
+}
+
+.server-buscado-img {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
+    border-radius: 150px; /* Aplicar border-radius al contenedor */
+    overflow: hidden;
+
+    border: 6px solid var(--logo-b-3, #0CB1F2); /* Asegurarse de que la imagen se ajuste al borde redondeado */
+  }
+
+  .server-buscado-img img {
+    min-width: 50%;
+    max-width: 100%; /* Ajustar la imagen al 100% del ancho del contenedor */
+    height: auto; /* Mantener la proporción de la imagen */
+    border-radius: inherit; /* Heredar el border-radius del contenedor */
+  }
+
+  .name-des-servidor{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: 1 0 0;
+    align-self: stretch;
+  }
+
+  .title-ser-bus{
+    color: #FFF;
+    font-family: Nunito;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+  }
+
+  .des-ser-bus{
+    color: #FFF;
+
+    /* chat/nunito semi bold 16 */
+    font-family: Nunito;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+
+/* VENTANA EMERGENTE */
+#ventanaEmergente {
+  display: none; /* Inicialmente oculta la ventana emergente */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-height: 80%; /* Altura máxima de la ventana emergente */
+  width: 300px;
+  padding: 20px;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 8px;
+  background: var(--darkweb-b-2, #011640);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  overflow: auto; /* Agrega una barra de desplazamiento si el contenido es demasiado largo */
+}
+
+/* CONTENIDO */
+#ventanaEmergente #contenido {
+  text-align: center;
+}
+
+/* BOTÓN DE CIERRE */
+#ventanaEmergente #cerrarBtn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+/* FORMULARIO */
+#ventanaEmergente .form-login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+#ventanaEmergente .label-form {
+  color: #FFF;
+  font-family: 'Nunito', sans-serif; /* Asegúrate de que la fuente 'Nunito' esté disponible */
+  font-size: 20px;
+  font-weight: 900;
+}
+
+#ventanaEmergente .input-form {
+  width: 100%; /* El ancho se ajusta automáticamente al contenedor */
+  padding: 10px; /* Reducido el relleno para ahorrar espacio */
+  border-radius: 12px;
+  border: none;
+  background: var(--darkweb-b-1, #3A5D8C);
+  color: #CCC;
+  font-family: 'Nunito', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+#ventanaEmergente .boton-login {
+  padding: 10px; /* Reducido el relleno para ahorrar espacio */
+  border-radius: 14px;
+  background: var(--logo-b-2, #1D79F2);
+  border: none;
+  color: #FFF;
+  font-family: 'Nunito', sans-serif;
+  font-size: 20px;
+  font-weight: 900;
+}
+
+#ventanaEmergente .text-1 {
+  color: #FFF;
+  font-family: 'Nunito', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+}
+
