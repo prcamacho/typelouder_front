@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
             credentials: "include" // Configurar para incluir automáticamente las cookies
         })
         .then(response => {
-                window.location.href = "../page/index.html";
+                window.location.href = "../page/";
 
         })
         .catch(error => {
