@@ -11,41 +11,48 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="registro-container">
 
-        <div class="container-login">
+    <div class="container">
+        <div class="logo-lottie">
             <div class="container-logo">
                 <img class="img-logo" src="../static/imgs/byteforcelogo.png"/>
-                <p id="byteforce-text">BYTE-FORCE</p>
+                <div id="byteforce-text">BYTE-FORCE</div>
             </div>
-            <div class="form-login-container">
-                <form class="form-login">
-                    <label class="label-form" for="correo">CORREO ELECTRÓNICO</label>
-                    <input class="input-form" type="email" id="email" name="email" required>
-            
-                    <label class="label-form" for="username">NOMBRE DE USUARIO</label>
-                    <input class="input-form" type="text" id="username" name="username" required>
-            
-                    <label class="label-form" for="nombre">NOMBRE</label>
-                    <input class="input-form" type="text" id="nombre" name="nombre" required>
-            
-                    <label class="label-form" for="apellido">APELLIDO</label>
-                    <input class="input-form" type="text" id="apellido" name="apellido" required>
-            
-                    <label class="label-form" for="password">CONTRASEÑA</label>
-                    <input class="input-form" type="password" id="password" name="password" required>
-            
-                    <label class="label-form" for="fecha_nacimiento">FECHA DE NACIMIENTO</label>
-                    <input class="input-form" type="date" id="fecha_nacimiento" name="fecha_nacimiento" required>
-                    
-                    <button class="boton-login" type="submit">REGISTRARSE</button>
-                    <div class="link-registrarse">
-                        <label class="text-1">¿Ya tienes Cuenta?</label>
-                        <a class="link-a" href="../page/index.html">Inicia Sesion</a>
-                    </div>
-                </form>
+            <div class="container-lottie-login">
+                <lottie-player class="lottie-login" autoplay="" loop="" mode="normal" src="../static/animaciones/register.json" background="transparent"> 
+                </lottie-player>
             </div>
+        </div>
 
+        <div class="form-login-container">
+
+            <form class="form-login">
+                <div id="byteforce-text">Registro</div>
+                <label class="label-form" for="correo">CORREO ELECTRÓNICO</label>
+                <input class="input-form" type="email" id="email" name="email" required>
+        
+                <label class="label-form" for="username">NOMBRE DE USUARIO</label>
+                <input class="input-form" type="text" id="username" name="username" required>
+        
+                <label class="label-form" for="nombre">NOMBRE</label>
+                <input class="input-form" type="text" id="nombre" name="nombre" required>
+        
+                <label class="label-form" for="apellido">APELLIDO</label>
+                <input class="input-form" type="text" id="apellido" name="apellido" required>
+        
+                <label class="label-form" for="password">CONTRASEÑA</label>
+                <input class="input-form" type="password" id="password" name="password" required>
+        
+                <label class="label-form" for="fecha_nacimiento">FECHA DE NACIMIENTO</label>
+                <input class="input-form" type="date" id="fecha_nacimiento" name="fecha_nacimiento" required>
+                
+                <button class="boton-login" type="submit">REGISTRARSE</button>
+                <div class="link-registrarse">
+                    <label class="text-1">¿Ya tienes Cuenta?</label>
+                    <a class="link-a" href="../page/login.html">Inicia Sesion</a>
+                </div>
+            </form>
+        </div>
     </div>
     <script src="../js/registro.js"></script>
     

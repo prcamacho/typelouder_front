@@ -1,4 +1,4 @@
-body {
+/* body {
     font-family: Arial, sans-serif;
 }
 
@@ -28,7 +28,6 @@ body {
 }
 
 
-/*FORM*/
 .form-login-container {
     display: flex;
     justify-content: center;
@@ -91,10 +90,9 @@ body {
 .text-1{
     color: #FFF;
 
-    /* chat/nunito semi bold 16 */
     font-family: Nunito;
     font-size: 16px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
-}
+} */
