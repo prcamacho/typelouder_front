@@ -1,4 +1,8 @@
 import { obtenerMensajesDelCanal } from "./cargarMensajes.js";
+// GUSTAVO
+import { crearFormulario } from "./crearServidor.js";
+import { performFetch } from "./requestTemplate.js";
+//
 
 function obtenerCanales(servidor_token) {
     // Realizar una solicitud GET a la URL deseada
@@ -23,6 +27,63 @@ function obtenerCanales(servidor_token) {
             h4Element.id = 'canal'+canal.id;
             miDiv.appendChild(h4Element);
         });
+
+        //BOTON ADD CANAL
+        const ventanaEmergente = document.querySelector('#ventanaEmergente');
+
+        // Agregar el botón de cierre "X" en la esquina superior derecha
+        const cerrarBtn = document.createElement('span');
+        cerrarBtn.id = 'cerrarBtn';
+        cerrarBtn.textContent = '×';
+        cerrarBtn.addEventListener('click', () => {
+            // Ocultar la ventana emergente cuando se hace clic en el botón de cierre
+            ventanaEmergente.style.display = 'none';
+        });
+        
+        const divAddCanal = document.createElement("div");
+        divAddCanal.textContent = "CREAR CANAL"
+
+        divAddCanal.addEventListener("click", () => {
+            
+            let campos = [{name:"nombre", type: "text"}]
+            let formulario_canal = crearFormulario(campos, "CREAR CANAL",(form)=>{
+                var formData = new FormData();
+                formData.append("nombre", form.nombre);
+                const fetchData = {
+                    url: `http://127.0.0.1:8000/canales/crear/${servidor_token}`, // URL of the API where you want to send the form
+                    method: 'POST', // POST method to send data
+                    headers: {
+                        // Configure Content-Type header for form data with a file
+                    },
+                    body: formData // Use the FormData object as the request body
+                
+                };
+                performFetch(fetchData)
+                .then(responseData => {
+                    ventanaEmergente.style.display = 'none';
+                    console.log(responseData); // Handle the response data here
+                })
+                .catch(error => {
+                    console.error('Error:', error); // Handle errors here
+                });
+            }); //
+                            // Agregar el formulario al contenedor de la ventana emergente
+            ventanaEmergente.innerHTML = '';
+        
+                            // Agregar el botón de cierre en la esquina superior derecha
+            ventanaEmergente.appendChild(cerrarBtn);
+                            
+            ventanaEmergente.appendChild(formulario_canal);
+                            
+                            // Mostrar la ventana emergente
+            ventanaEmergente.style.display = 'block';
+                    
+        })
+
+        miDiv.appendChild(divAddCanal);
+
+
+        //
         miDiv.addEventListener("click", function(event) {
             if (event.target.classList.contains("canales-clickleables")) {
                 // Se hizo clic en un elemento h4 con la clase "canales-clickleables"
