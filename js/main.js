@@ -68,6 +68,7 @@ document.addEventListener("DOMContentLoaded", function () {
             
             
         );
+
         
         
         // Agregar el formulario al contenedor de la ventana emergente
