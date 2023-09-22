@@ -8,6 +8,16 @@ import { cargarUsuario } from "./user/cargarUsuario.js";
 
 document.addEventListener("DOMContentLoaded", function () {
     
+
+    
+    
+
+    setTimeout(function() {
+        console.log("¡Temporizador de 2 segundos ha terminado!");
+        cargarUsuario();
+      }, 150);
+    
+    
     var tituloServidor = document.querySelector(".contenedor-titulo");
     var popupServidor = document.querySelector(".popup-servidor");
     var imagenFlecha = document.querySelector(".flecha");
@@ -162,7 +172,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });   
 });
 
-cargarUsuario();
+
 
 const cerrarSesion = document.querySelector(".cerrar-sesion");
 
