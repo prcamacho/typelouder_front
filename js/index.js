@@ -7,7 +7,11 @@ import { cargarUsuario } from "./user/cargarUsuario.js";
 
 
 document.addEventListener("DOMContentLoaded", function () {
-    
+    if (!document.cookie.includes('authenticated=true')) {
+        window.location.href = "../page/login.html";
+        // Realiza las acciones apropiadas para un usuario autenticado
+    }
+
     var tituloServidor = document.querySelector(".contenedor-titulo");
     var popupServidor = document.querySelector(".popup-servidor");
     var imagenFlecha = document.querySelector(".flecha");
