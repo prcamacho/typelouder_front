@@ -1,10 +1,9 @@
 import { crearFormulario } from "./servidor/crearServidor.js";
 import { performFetch } from "./servidor/requestTemplate.js";
-import { obtenerCanales } from "./servidor/cargarCanales.js";
-import { cargarBienvenida } from "./servidor/cargarBienvenida.js";
 import { cargarUsuario } from "./user/cargarUsuario.js";
-
-
+import { paginacionServidores } from "./servidor/paginacionServidor.js";
+import { servidoresUser } from "./servidor/servidorUser.js";
+import { like_servidor } from "./servidor/likeServidor.js";
 
 document.addEventListener("DOMContentLoaded", function () {
      
@@ -14,10 +13,16 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     setTimeout(function() {
+        setTimeout(function() {
+          console.log("¡Temporizador de 2 segundos ha terminado!");
+          paginacionServidores(1);  
+        }, 500);
         console.log("¡Temporizador de 2 segundos ha terminado!");
         cargarUsuario();
-      }, 150);
+      }, 500);
     
+    
+
 
     var tituloServidor = document.querySelector(".contenedor-titulo");
     var popupServidor = document.querySelector(".popup-servidor");
@@ -39,6 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     //SECCION DEL BOTON AGREGAR SERVIDOR
     addservidor.addEventListener("click", () => {
+       
         console.log("Add servidor");
         let formulario = crearFormulario(
             [
@@ -76,7 +82,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         console.error('Error:', error); // Handle errors here
                     });
             }
-            
+         
             
         );
         
@@ -132,45 +138,19 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 300);
     });
 
+    servidoresUser();
 
-    fetch("http://127.0.0.1:8000/servidores/", {
-        method: "GET",
-        credentials: "include" // Configura para incluir automáticamente las cookies si es necesario
-    })
-    .then(response => response.json()) // Si esperas una respuesta JSON
-    .then(data => {
-        // Acceder a los datos JSON y mostrarlos en el HTML
-        const resultadosDiv = document.querySelector(".server-icon");
-        console.log(data)
-        // Iterar sobre el arreglo de objetos
-        data[0].forEach(servidor => {
-            // Crear elementos HTML para mostrar la información del servidor
-
-            const imageElement = document.createElement("img");
-            imageElement.className = "server-icon";
-            imageElement.src = servidor.imagen;
-            const anchorElement = document.createElement("a");
-            anchorElement.id=servidor.token;
-            anchorElement.href = "#";
-
-            anchorElement.addEventListener("click", function(event) {
-                event.preventDefault(); // Prevenir el comportamiento predeterminado del enlace
-                const tituloServidor = document.querySelector(".titulo-servidor");
-                tituloServidor.textContent = servidor.nombre;
-                    cargarBienvenida(servidor.descripcion);
-                    obtenerCanales(this.id);
-                
-        });
-            // Agregar los elementos al elemento "resultados" en el HTML
-            anchorElement.appendChild(imageElement);
-            resultadosDiv.appendChild(anchorElement);
-        });
-    }) 
-
-    .catch(error => {
-        // Manejar el error en caso de que ocurra
-        console.error("Error:", error);
-    });   
+    const input_servidor = document.querySelector(".container-buscador");
+    input_servidor.addEventListener("input", function() {
+        const nombre_servidor = input_servidor.value;
+        if (nombre_servidor !== ""){
+            setTimeout(function(){
+            like_servidor(nombre_servidor);
+            },100);
+        } else {
+            paginacionServidores(1);
+        } // Pasa "this" como argumento para asegurarte de que se obtiene el valor correcto
+    });
 });
 
 
