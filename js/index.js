@@ -7,10 +7,17 @@ import { cargarUsuario } from "./user/cargarUsuario.js";
 
 
 document.addEventListener("DOMContentLoaded", function () {
+     
     if (!document.cookie.includes('authenticated=true')) {
         window.location.href = "../page/login.html";
         // Realiza las acciones apropiadas para un usuario autenticado
     }
+
+    setTimeout(function() {
+        console.log("¡Temporizador de 2 segundos ha terminado!");
+        cargarUsuario();
+      }, 150);
+    
 
     var tituloServidor = document.querySelector(".contenedor-titulo");
     var popupServidor = document.querySelector(".popup-servidor");
@@ -166,7 +173,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });   
 });
 
-cargarUsuario();
+
 
 const cerrarSesion = document.querySelector(".cerrar-sesion");
 
