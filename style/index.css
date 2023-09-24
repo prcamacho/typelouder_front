@@ -215,6 +215,15 @@ html, body {
   width: 250px;
 }
 
+.imagen-usuario{
+  border-radius: 30px;
+  margin: 5px;
+}
+
+.img-popup-usuario{
+  border-radius: 45px;
+}
+
 .popup-servidor p {
   white-space: nowrap;
   overflow: hidden;
@@ -265,6 +274,7 @@ html, body {
   /* background-color: var(--logo-b-3, #0CB1F2); */
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
+  height: 100px;
 }
 
 .boton-editar{
@@ -526,11 +536,20 @@ hr{
 .canal-seleccionado{
     height: 8vh;
     width: 100%;
+    background-color: #031052;
+    color: #CCC;
+    display: flex;
+    align-items: center;
+}
+
+.contenedor-mensajes{
+  width: 100%;
+  height: 82vh;
 }
 
 .seccion-mensajes{
     height: 82vh;
-    width: 90%;
+    width: 95%;
     margin: auto;
     overflow-y: auto;
     display: flex;
@@ -542,13 +561,53 @@ hr{
     width: 0 !important; /* Oculta las barras de desplazamiento en navegadores WebKit (Chrome, Safari, etc.) */
 }
 
+.div-todo-mensaje{
+  display: flex;
+  background-color: #010314;
+  margin: 5px 0px;
+  max-width: 70%;
+  border-radius: 10px;
+}
+
+.div-imagen-mensaje{
+  width: 60px;
+}
+
+.img-user-mensaje{
+  width: 50px;
+  height: 50px;
+  margin: 5px;
+  border-radius: 25px;
+}
+
+.div-contenedor-mensaje{
+  display: flex;
+  flex-direction: column;
+  padding: 10px 15px;
+}
+
+.div-username-fecha{
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  width: 100%;
+}
+
+.h4-user-mensaje{
+  color: #0CB1F2;
+  margin: 0;
+}
+
+.h5-fecha-hora{
+  color: #acacac;
+  margin: 0;
+}
+
 .div-mensajes{
-    background-color: #010314;
     color: #FFF;
-    padding: 20px;
-    width: max-content;
-    max-width: 70%;
-    margin: 5px 30px;
+    
+    max-width: 100%;
+    margin: 5px 0px;
     display: flex;
     flex-wrap: wrap;
 }
@@ -558,3 +617,8 @@ hr{
     width: 100%;
 }
 
+@media (max-width: 768px){
+  .div-mensajes{
+    padding: 10px;
+  }
+}

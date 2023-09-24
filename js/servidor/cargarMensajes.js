@@ -1,6 +1,6 @@
 
 
-function obtenerMensajesDelCanal(id_canal) {
+function obtenerMensajesDelCanal(id_canal, nombre_canal) {
     // Realizar una solicitud GET a la URL deseada
     const h4h3Elements = document.querySelectorAll(".canales-clickleables");
     h4h3Elements.forEach(function(elementos) {
@@ -28,31 +28,64 @@ function obtenerMensajesDelCanal(id_canal) {
         seccionDerecha.innerHTML = "";
         const divTituloCanal = document.createElement("div");
         divTituloCanal.className = 'canal-seleccionado';
+        const contenedorMensajes = document.createElement("div");
+        contenedorMensajes.className = 'contenedor-mensajes';
         const seccionMensajes = document.createElement("div");
         seccionMensajes.className = 'seccion-mensajes';
         const divInputMensaje = document.createElement("div");
         divInputMensaje.className = "input-mensaje";
-        //divTituloCanal.style.height = "8vh";
 
+        const h2TituloCanal = document.createElement("h2");
+        h2TituloCanal.textContent = nombre_canal;
+        h2TituloCanal.style.margin = "0px 15px";
+        
+        divTituloCanal.appendChild(h2TituloCanal);
         
         data[0].forEach(function(mensaje) {
+            const divTodoMensaje = document.createElement("div");
             const divImagenMensaje = document.createElement("div");
+            const divContenedorMensaje = document.createElement("div");
             const divUsernameFecha = document.createElement("div");
             const divMensaje = document.createElement("div");
-
+            
+            divTodoMensaje.className = "div-todo-mensaje"
             divImagenMensaje.className = "div-imagen-mensaje";
+            divContenedorMensaje.className = "div-contenedor-mensaje"
             divUsernameFecha.className = "div-username-fecha";
-            divMensaje.textContent = mensaje.mensaje;
             divMensaje.className = "div-mensajes";
+            
+            const imgImagenUser = document.createElement("img");
+            const h4Username = document.createElement("h4");
+            const h5FechaHora = document.createElement("h5");
+
+            imgImagenUser.className = "img-user-mensaje";
+            h4Username.className = "h4-user-mensaje";
+            h5FechaHora.className = "h5-fecha-hora";
+
+            imgImagenUser.src = mensaje.usuario.imagen;
+            h4Username.textContent = mensaje.usuario.username;
+            h5FechaHora.textContent = mensaje.fecha_mensaje;
+            divMensaje.textContent = mensaje.mensaje;
 
 
             const idUsuario = document.querySelector(".username-usuario");
             if (mensaje.usuario.id === parseInt(idUsuario.id)){
-                divMensaje.style.alignSelf = "end";
-                divMensaje.style.backgroundColor = "#010931";   
+                divTodoMensaje.style.alignSelf = "end";
+                divTodoMensaje.style.backgroundColor = "#010931";
+                divTodoMensaje.style.flexDirection = "row-reverse";   
             }
-            seccionMensajes.appendChild(divMensaje);
+
+            divUsernameFecha.appendChild(h4Username);
+            divUsernameFecha.appendChild(h5FechaHora);
+            divContenedorMensaje.appendChild(divUsernameFecha);
+            divContenedorMensaje.appendChild(divMensaje);
+            divImagenMensaje.appendChild(imgImagenUser);
+            divTodoMensaje.appendChild(divImagenMensaje);
+            divTodoMensaje.appendChild(divContenedorMensaje);
+            seccionMensajes.appendChild(divTodoMensaje);
+            contenedorMensajes.appendChild(seccionMensajes);
         });
+        seccionMensajes.scrollTop = seccionMensajes.scrollHeight;
         seccionDerecha.appendChild(divTituloCanal);
         seccionDerecha.appendChild(seccionMensajes);
         seccionDerecha.appendChild(divInputMensaje);

@@ -91,8 +91,8 @@ function obtenerCanales(servidor_token) {
                 const id = clickedH4.id;
                 const parteNumerica = id.match(/\d+/);
                 const id_canal = parseInt(parteNumerica[0], 10);
-        
-                obtenerMensajesDelCanal(id_canal);
+                const nombre_canal = clickedH4.textContent;
+                obtenerMensajesDelCanal(id_canal,nombre_canal);
                 
                 // Realiza la acción deseada con el ID del canal
         
