@@ -33,7 +33,18 @@ function obtenerMensajesDelCanal(id_canal, nombre_canal) {
         const seccionMensajes = document.createElement("div");
         seccionMensajes.className = 'seccion-mensajes';
         const divInputMensaje = document.createElement("div");
-        divInputMensaje.className = "input-mensaje";
+        divInputMensaje.className = "send-mensaje";
+        const formularioMensaje = document.createElement("form");
+        formularioMensaje.className = "formulario-mensaje";
+        const inputMensaje = document.createElement("input");
+        inputMensaje.className = "input-mensaje";
+        inputMensaje.placeholder = "Ingrese mensaje...";
+        const botonMensaje = document.createElement("button");
+        botonMensaje.className = "boton-mensaje";
+        botonMensaje.type = "submit";
+        const imgbotonmensaje = document.createElement("img");
+        imgbotonmensaje.className = "img-boton-mensaje";
+        imgbotonmensaje.src= "../static/imgs/boton-enviar.png"
 
         const h2TituloCanal = document.createElement("h2");
         h2TituloCanal.textContent = nombre_canal;
@@ -41,6 +52,10 @@ function obtenerMensajesDelCanal(id_canal, nombre_canal) {
         
         divTituloCanal.appendChild(h2TituloCanal);
         
+        botonMensaje.appendChild(imgbotonmensaje);
+        formularioMensaje.appendChild(inputMensaje);
+        formularioMensaje.appendChild(botonMensaje);
+        divInputMensaje.appendChild(formularioMensaje);
         data[0].forEach(function(mensaje) {
             const divTodoMensaje = document.createElement("div");
             const divImagenMensaje = document.createElement("div");
