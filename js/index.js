@@ -175,5 +175,5 @@ cerrarSesion.addEventListener("click", function (event) {
 });
 
 
-
+console.log(window.location.hash.substring(1).split('#'));
 

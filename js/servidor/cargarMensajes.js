@@ -9,6 +9,8 @@ function obtenerMensajesDelCanal(id_canal, nombre_canal) {
                 el.classList.remove("clicked");
             });
             this.classList.add("clicked");
+
+
         });
     });
 

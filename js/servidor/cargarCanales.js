@@ -93,7 +93,12 @@ function obtenerCanales(servidor_token) {
                 const id_canal = parseInt(parteNumerica[0], 10);
                 const nombre_canal = clickedH4.textContent;
                 obtenerMensajesDelCanal(id_canal,nombre_canal);
-                
+
+                // Cargar canal al Path
+                const tokenUrl = window.location.hash.substring(1).split('#')[0];
+                window.history.replaceState({}, '', 'http://127.0.0.1:5500/page/');
+                const nuevaURL = "/page/#"+tokenUrl+"#"+id_canal;
+                window.history.pushState({}, '', nuevaURL);
                 // Realiza la acción deseada con el ID del canal
         
                 // Elimina la clase "clicked" de todos los elementos h4 y agrega la clase "clicked" al clicado

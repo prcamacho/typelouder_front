@@ -28,6 +28,9 @@ function servidoresUser(){
                 tituloServidor.textContent = servidor.nombre;
                     cargarBienvenida(servidor.descripcion);
                     obtenerCanales(this.id);
+                    window.history.replaceState({}, '', 'http://127.0.0.1:5500/page/');
+                    const nuevaURL = "/page/#"+servidor.token;
+                    window.history.pushState({}, '', nuevaURL);
                 
         });
             // Agregar los elementos al elemento "resultados" en el HTML
