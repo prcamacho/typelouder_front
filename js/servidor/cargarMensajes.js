@@ -23,7 +23,7 @@ function obtenerMensajesDelCanal(id_canal, nombre_canal) {
         return response.json(); // Si esperas una respuesta JSON
     })
     .then(data => {
-
+        
         const seccionDerecha = document.querySelector(".servidor-search");
         seccionDerecha.innerHTML = "";
         const divTituloCanal = document.createElement("div");
