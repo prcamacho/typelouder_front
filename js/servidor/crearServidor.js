@@ -26,6 +26,9 @@ function crearFormulario(campos, titulo, onSubmitCallback) {
         if (campo.type === 'file') {
             // Si el campo es de tipo 'file', guardar una referencia al input en el objeto fileInputs
             fileInputs[campo.name] = input;
+        } else if (campo.hasOwnProperty('value')) {
+            // Verificar si el campo tiene la propiedad 'value' y establecer el valor en el input
+            input.value = campo.value;
         }
     });
 
@@ -35,7 +38,7 @@ function crearFormulario(campos, titulo, onSubmitCallback) {
     submitButton.textContent = 'ACEPTAR';
 
     form.addEventListener('submit', function (event) {
-        event.preventDefault();
+        //event.preventDefault();
         if (typeof onSubmitCallback === 'function') {
             var formData = {};
             campos.forEach(function (campo) {
