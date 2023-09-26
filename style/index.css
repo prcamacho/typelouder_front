@@ -735,6 +735,49 @@ hr{
   transition: 0.3s;
 }
 
+.popup-confirmacion {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 300px;
+  height: 300px;
+  background-color: #081d86;
+  border-radius: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.menaje-confirmacion-popup{
+  color: #CCC;
+  font-family: Nunito;
+}
+
+.boton-aceptar {
+  padding: 10px 20px;
+  margin: 10px;
+  cursor: pointer;
+  background-color: darkgreen;
+}
+
+.boton-cancelar {
+  padding: 10px 20px;
+  margin: 10px;
+  cursor: pointer;
+  background-color: crimson;
+}
+
 @media (max-width: 768px){
   .div-mensajes{
     padding: 10px;

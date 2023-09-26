@@ -22,10 +22,10 @@ function estiloServidores(data){
         const divDescripcionCard = document.createElement("div");
         divDescripcionCard.className = "div-descripcion-card";
         divDescripcionCard.textContent = servidor.descripcion;
-        const botonUnirseCanal = document.createElement("a");
-        botonUnirseCanal.className = "boton-unirse-canal";
-        botonUnirseCanal.textContent = "Unirse"
-        botonUnirseCanal.href = "http://127.0.0.1:5500/page/#"+servidor.token;
+        const botonUnirseServidor = document.createElement("button");
+        botonUnirseServidor.className = "boton-unirse-canal";
+        botonUnirseServidor.textContent = "Unirse"
+        botonUnirseServidor.href = "http://127.0.0.1:5500/page/#"+servidor.token;
 
 
         divContenedorImagenCard.appendChild(imgCardServidor);
@@ -33,16 +33,54 @@ function estiloServidores(data){
         divContenidoCard.appendChild(divDescripcionCard);
         divCardServidores.appendChild(divContenedorImagenCard);
         divCardServidores.appendChild(divContenidoCard);
-        divCardServidores.appendChild(botonUnirseCanal);
+        divCardServidores.appendChild(botonUnirseServidor);
         listaServidores.appendChild(divCardServidores);
         
-        botonUnirseCanal.addEventListener("click", function(event) {
+        botonUnirseServidor.addEventListener("click", function(event) {
             event.preventDefault(); // Prevenir el comportamiento predeterminado del enlace
-            obtenerCanales(servidor.token);
-            window.history.replaceState({}, '', 'http://127.0.0.1:5500/page/');
-            const nuevaURL = "/page/#"+servidor.token;
-            window.history.pushState({}, '', nuevaURL);
+            fetch("http://127.0.0.1:8000/miembros/es_miembro/"+servidor.token, {
+                    method: "GET",
+                    credentials: "include" // Configura para incluir automáticamente las cookies si es necesario
+                })
+                .then(response => response.json()) // Si esperas una respuesta JSON
+                .then(data => {
+                    if (data[0] === true){
+                        obtenerCanales(servidor.token);
+                        window.history.replaceState({}, '', 'http://127.0.0.1:5500/page/');
+                        const nuevaURL = "/page/#"+servidor.token;
+                        window.history.pushState({}, '', nuevaURL);
+                    } else {
 
+                        const popupConfirmacion = document.querySelector('.popup-confirmacion');
+                        popupConfirmacion.style.display = 'block';
+                        const mensajeConfirmacionPopup = document.querySelector('.mensaje-confirmacion-popup');
+                        mensajeConfirmacionPopup.textContent = "¿Desea Unirse a "+servidor.nombre+"?";
+                        const aceptarButton = document.querySelector('.boton-aceptar');
+                        const cancelarButton = document.querySelector('.boton-cancelar');
+
+                        aceptarButton.addEventListener('click', () => {
+                            popupConfirmacion.style.display = 'none';
+                            fetch("http://127.0.0.1:8000/miembros/unirse/"+servidor.token, {
+                            method: "POST",
+                            credentials: "include" // Configura para incluir automáticamente las cookies si es necesario
+                            })
+                            .then(response => {
+                                obtenerCanales(servidor.token);
+                                window.history.replaceState({}, '', 'http://127.0.0.1:5500/page/');
+                                const nuevaURL = "/page/#"+servidor.token;
+                                window.history.pushState({}, '', nuevaURL);
+                            })
+                            .catch(error => {
+                                // Manejar el error en caso de que ocurra
+                                console.error("Error:", error);    
+                            });
+                        });
+                        cancelarButton.addEventListener('click', () => {
+                            popupConfirmacion.style.display = 'none';
+                        });
+
+                    }
+                });
         });    
     });
 }
