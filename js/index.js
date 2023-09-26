@@ -2,7 +2,7 @@ import { crearFormulario } from "./servidor/crearServidor.js";
 import { performFetch } from "./servidor/requestTemplate.js";
 import { cargarUsuario } from "./user/cargarUsuario.js";
 import { paginacionServidores } from "./servidor/paginacionServidor.js";
-import { servidoresUser } from "./servidor/servidorUser.js";
+import { servidoresUser } from "./user/servidorUser.js";
 import { like_servidor } from "./servidor/likeServidor.js";
 // import { obtenerCanales } from "./servidor/cargarCanales.js";
 

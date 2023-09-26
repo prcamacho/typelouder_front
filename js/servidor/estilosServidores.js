@@ -1,4 +1,5 @@
-import { obtenerCanales } from "./cargarCanales.js";
+import { obtenerCanales } from "../canales/cargarCanales.js";
+import { servidoresUser } from "../user/servidorUser.js";
 
 function estiloServidores(data){
             // Procesa los datos y muestra los servidores
@@ -60,6 +61,7 @@ function estiloServidores(data){
 
                         aceptarButton.addEventListener('click', () => {
                             popupConfirmacion.style.display = 'none';
+                            setTimeout(function() {
                             fetch("http://127.0.0.1:8000/miembros/unirse/"+servidor.token, {
                             method: "POST",
                             credentials: "include" // Configura para incluir automáticamente las cookies si es necesario
@@ -69,11 +71,15 @@ function estiloServidores(data){
                                 window.history.replaceState({}, '', 'http://127.0.0.1:5500/page/');
                                 const nuevaURL = "/page/#"+servidor.token;
                                 window.history.pushState({}, '', nuevaURL);
-                            })
-                            .catch(error => {
-                                // Manejar el error en caso de que ocurra
-                                console.error("Error:", error);    
-                            });
+                                    setTimeout(function() {
+                                        
+                                        servidoresUser();
+                                    }, 500);
+                                })
+                                .catch(error => {
+                                    // Manejar el error en caso de que ocurra
+                                });
+                            }, 500);
                         });
                         cancelarButton.addEventListener('click', () => {
                             popupConfirmacion.style.display = 'none';

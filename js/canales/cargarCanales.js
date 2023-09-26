@@ -1,7 +1,7 @@
-import { obtenerMensajesDelCanal } from "./cargarMensajes.js";
+import { obtenerMensajesDelCanal } from "../mensajes/cargarMensajes.js";
 // GUSTAVO
-import { crearFormulario } from "./crearServidor.js";
-import { performFetch } from "./requestTemplate.js";
+import { crearFormulario } from "../servidor/crearServidor.js";
+import { performFetch } from "../servidor/requestTemplate.js";
 //
 
 function obtenerCanales(servidor_token) {

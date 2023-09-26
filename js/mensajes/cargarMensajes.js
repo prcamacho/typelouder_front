@@ -14,6 +14,42 @@ function obtenerMensajesDelCanal(id_canal, nombre_canal) {
         });
     });
 
+
+    const seccionDerecha = document.querySelector(".servidor-search");
+    seccionDerecha.innerHTML = "";
+    const divTituloCanal = document.createElement("div");
+    divTituloCanal.className = 'canal-seleccionado';
+    const contenedorMensajes = document.createElement("div");
+    contenedorMensajes.className = 'contenedor-mensajes';
+    const seccionMensajes = document.createElement("div");
+    seccionMensajes.className = 'seccion-mensajes';
+    //seccionMensajes.style.flexDirection = "column-reverse";
+    const divInputMensaje = document.createElement("div");
+    divInputMensaje.className = "send-mensaje";
+    const formularioMensaje = document.createElement("form");
+    formularioMensaje.className = "formulario-mensaje";
+    const inputMensaje = document.createElement("input");
+    inputMensaje.className = "input-mensaje";
+    inputMensaje.placeholder = "Ingrese mensaje...";
+    const botonMensaje = document.createElement("button");
+    botonMensaje.className = "boton-mensaje";
+    botonMensaje.type = "submit";
+    const imgbotonmensaje = document.createElement("img");
+    imgbotonmensaje.className = "img-boton-mensaje";
+    imgbotonmensaje.src= "../static/imgs/boton-enviar.png"
+
+    const h2TituloCanal = document.createElement("h2");
+    h2TituloCanal.textContent = nombre_canal;
+    h2TituloCanal.style.margin = "0px 15px";
+    
+    divTituloCanal.appendChild(h2TituloCanal);
+    
+    botonMensaje.appendChild(imgbotonmensaje);
+    formularioMensaje.appendChild(inputMensaje);
+    formularioMensaje.appendChild(botonMensaje);
+    divInputMensaje.appendChild(formularioMensaje);
+
+
     fetch("http://127.0.0.1:8000/mensajes/" + id_canal, {
         method: "GET",
         credentials: "include" // Configura para incluir automáticamente las cookies si es necesario
@@ -25,39 +61,13 @@ function obtenerMensajesDelCanal(id_canal, nombre_canal) {
         return response.json(); // Si esperas una respuesta JSON
     })
     .then(data => {
-        
-        const seccionDerecha = document.querySelector(".servidor-search");
-        seccionDerecha.innerHTML = "";
-        const divTituloCanal = document.createElement("div");
-        divTituloCanal.className = 'canal-seleccionado';
-        const contenedorMensajes = document.createElement("div");
-        contenedorMensajes.className = 'contenedor-mensajes';
-        const seccionMensajes = document.createElement("div");
-        seccionMensajes.className = 'seccion-mensajes';
-        const divInputMensaje = document.createElement("div");
-        divInputMensaje.className = "send-mensaje";
-        const formularioMensaje = document.createElement("form");
-        formularioMensaje.className = "formulario-mensaje";
-        const inputMensaje = document.createElement("input");
-        inputMensaje.className = "input-mensaje";
-        inputMensaje.placeholder = "Ingrese mensaje...";
-        const botonMensaje = document.createElement("button");
-        botonMensaje.className = "boton-mensaje";
-        botonMensaje.type = "submit";
-        const imgbotonmensaje = document.createElement("img");
-        imgbotonmensaje.className = "img-boton-mensaje";
-        imgbotonmensaje.src= "../static/imgs/boton-enviar.png"
-
-        const h2TituloCanal = document.createElement("h2");
-        h2TituloCanal.textContent = nombre_canal;
-        h2TituloCanal.style.margin = "0px 15px";
-        
-        divTituloCanal.appendChild(h2TituloCanal);
-        
-        botonMensaje.appendChild(imgbotonmensaje);
-        formularioMensaje.appendChild(inputMensaje);
-        formularioMensaje.appendChild(botonMensaje);
-        divInputMensaje.appendChild(formularioMensaje);
+        if (data[1] === 404){
+            const noMensajes = document.createElement("h1");
+            noMensajes.textContent = "Aún no hay mensajes"
+            noMensajes.style.color = "#ccc";
+            noMensajes.style.margin = "auto";
+            seccionMensajes.appendChild(noMensajes);
+        } else {
         data[0].forEach(function(mensaje) {
             const divTodoMensaje = document.createElement("div");
             const divImagenMensaje = document.createElement("div");
@@ -102,15 +112,15 @@ function obtenerMensajesDelCanal(id_canal, nombre_canal) {
             seccionMensajes.appendChild(divTodoMensaje);
             contenedorMensajes.appendChild(seccionMensajes);
         });
-        seccionMensajes.scrollTop = seccionMensajes.scrollHeight;
+    }
+        //seccionMensajes.scrollTop = seccionMensajes.scrollHeight;
         seccionDerecha.appendChild(divTituloCanal);
         seccionDerecha.appendChild(seccionMensajes);
         seccionDerecha.appendChild(divInputMensaje);
         return data;
     })
     .catch(error => {
-        // Manejar el error en caso de que ocurra
-        console.error("Error:", error);
+        console.log("error")
     });
 }
 

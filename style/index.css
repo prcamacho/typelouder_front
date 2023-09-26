@@ -741,41 +741,67 @@ hr{
   top: 50%;
   left: 50%;
   width: 300px;
-  height: 300px;
-  background-color: #081d86;
+  height: 150px;
+  background-color: #011640;
   border-radius: 20px;
   justify-content: center;
   align-items: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
 }
 
 .popup-content {
   width: 100%;
-  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 20px;
   border-radius: 5px;
-  text-align: center;
 }
 
-.menaje-confirmacion-popup{
+.mensaje-confirmacion-popup{
   color: #CCC;
   font-family: Nunito;
+  text-align: center;
 }
 
 .boton-aceptar {
   padding: 10px 20px;
   margin: 10px;
   cursor: pointer;
-  background-color: darkgreen;
+  background-color: #1D79F2;
+  border-radius: 20px;
+  color: #CCC;
+  font-family: Nunito;
 }
 
 .boton-cancelar {
+  color: #CCC;
   padding: 10px 20px;
   margin: 10px;
   cursor: pointer;
   background-color: crimson;
+  border-radius: 20px;
+  font-family: Nunito;
+}
+
+.lottie-bienvenida{
+  width: 618px;
+  height: 315px;
+}
+
+.titulo-bienvenida, .titulo-servidor-bienvenida{
+  font-family: Nunito;
+  color: #CCC;
+  margin: 15px auto;
+  width: 80%;
+  text-align: center;
+}
+
+.mensaje-bienvenida{
+  width: 80%;
+  margin: 10px auto;
+  font-family: Nunito;
+  color: #CCC;
 }
 
 @media (max-width: 768px){
@@ -796,4 +822,11 @@ hr{
     height: 16px;
   }
 
+}
+
+@media (max-width: 850px){
+  .lottie-bienvenida{
+    width: 100%;
+    height: auto;
+  }
 }

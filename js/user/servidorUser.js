@@ -1,5 +1,5 @@
-import { obtenerCanales } from "./cargarCanales.js";
-import { cargarBienvenida } from "./cargarBienvenida.js";
+import { obtenerCanales } from "../canales/cargarCanales.js";
+import { cargarBienvenida } from "../canales/cargarBienvenida.js";
 
 function servidoresUser(){
     fetch("http://127.0.0.1:8000/servidores/", {
@@ -10,7 +10,7 @@ function servidoresUser(){
     .then(data => {
         // Acceder a los datos JSON y mostrarlos en el HTML
         const resultadosDiv = document.querySelector(".server-icon");
-        console.log(data)
+        resultadosDiv.innerHTML = "";
         // Iterar sobre el arreglo de objetos
         data[0].forEach(servidor => {
             // Crear elementos HTML para mostrar la información del servidor
@@ -26,7 +26,7 @@ function servidoresUser(){
                 event.preventDefault(); // Prevenir el comportamiento predeterminado del enlace
                 const tituloServidor = document.querySelector(".titulo-servidor");
                 tituloServidor.textContent = servidor.nombre;
-                    cargarBienvenida(servidor.descripcion);
+                    cargarBienvenida(servidor);
                     obtenerCanales(this.id);
                     window.history.replaceState({}, '', 'http://127.0.0.1:5500/page/');
                     const nuevaURL = "/page/#"+servidor.token;
