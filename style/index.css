@@ -80,7 +80,7 @@ html, body {
 
 .server-icon img {
   width: 60px; /* Ajustar la imagen al 100% del ancho del contenedor */
-  min-height: 60px; /* Mantener la proporción de la imagen */
+  height: 60px; /* Mantener la proporción de la imagen */
   border-radius: 50%; /* Heredar el border-radius del contenedor */
 }
 
@@ -358,7 +358,6 @@ hr{
     transform: translateY(15vh);
     width: 75%;
     margin: auto;
-    display: flex;
     height: 20px;
     padding: 10px 22px;
     background: rgba(58, 93, 140, 0.5);
@@ -748,4 +747,10 @@ hr{
   .input-mensaje{
     width: 100%;
   }
+
+  .container-buscador{
+    font-size: 20px;
+    height: 16px;
+  }
+
 }

@@ -56,7 +56,6 @@ function obtenerCanales(servidor_token) {
                         // Configure Content-Type header for form data with a file
                     },
                     body: formData // Use the FormData object as the request body
-                
                 };
                 performFetch(fetchData)
                 .then(responseData => {
@@ -69,15 +68,11 @@ function obtenerCanales(servidor_token) {
             }); //
                             // Agregar el formulario al contenedor de la ventana emergente
             ventanaEmergente.innerHTML = '';
-        
                             // Agregar el botón de cierre en la esquina superior derecha
             ventanaEmergente.appendChild(cerrarBtn);
-                            
             ventanaEmergente.appendChild(formulario_canal);
-                            
                             // Mostrar la ventana emergente
             ventanaEmergente.style.display = 'block';
-                    
         })
 
         miDiv.appendChild(divAddCanal);

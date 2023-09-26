@@ -4,9 +4,15 @@ import { cargarUsuario } from "./user/cargarUsuario.js";
 import { paginacionServidores } from "./servidor/paginacionServidor.js";
 import { servidoresUser } from "./servidor/servidorUser.js";
 import { like_servidor } from "./servidor/likeServidor.js";
+// import { obtenerCanales } from "./servidor/cargarCanales.js";
 
 document.addEventListener("DOMContentLoaded", function () {
-     
+    
+    
+
+    if (window.location.hash.substring(1).split('#')[0] !== ['']){
+        console.log("hola");    
+    }
     if (!document.cookie.includes('authenticated=true')) {
         window.location.href = "../page/login.html";
         // Realiza las acciones apropiadas para un usuario autenticado
@@ -146,14 +152,54 @@ document.addEventListener("DOMContentLoaded", function () {
         if (nombre_servidor !== ""){
             setTimeout(function(){
             like_servidor(nombre_servidor);
-            },100);
+            },200);
         } else {
             paginacionServidores(1);
         } // Pasa "this" como argumento para asegurarte de que se obtiene el valor correcto
     });
+
 });
 
 
+
+var enlaces = document.querySelectorAll(".boton-unirse-canal");
+
+enlaces.forEach(function(enlace) {
+    enlace.addEventListener("click", function(event) {
+        event.preventDefault(); // Evita el comportamiento predeterminado del enlace
+
+        // Obtén el token de la URL
+        var token = window.location.hash.substring(1).split('#')[0];
+        console.log(token);
+
+        // Crea un campo de entrada de texto oculto para simular la pulsación de "Enter"
+        var inputElement = document.createElement("input");
+        inputElement.type = "text";
+        inputElement.style.display = "none";
+        document.body.appendChild(inputElement);
+
+        // Simula la pulsación de "Enter" en el campo de entrada
+        inputElement.addEventListener("keydown", function(e) {
+            if (e.key === "Enter") {
+                // Llama a la función obtenerCanales después de la simulación de "Enter"
+                obtenerCanales(token);
+
+                // Limpia el campo de entrada y elimina el evento
+                inputElement.value = "";
+                document.body.removeChild(inputElement);
+            }
+        });
+
+        // Dispara un evento de pulsación de tecla en el campo de entrada
+        var enterEvent = new KeyboardEvent("keydown", {
+            key: "Enter",
+            keyCode: 13,
+            which: 13,
+            code: "Enter",
+        });
+        inputElement.dispatchEvent(enterEvent);
+    });
+});
 
 const cerrarSesion = document.querySelector(".cerrar-sesion");
 
