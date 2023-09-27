@@ -6,7 +6,7 @@ function like_servidor(nombre_servidor){
         .then(data => {
             // Limpia la lista de servidores
             estiloServidores(data);
-        
+            
         })
 }
 

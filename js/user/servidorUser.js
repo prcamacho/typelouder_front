@@ -8,6 +8,16 @@ function servidoresUser(){
     })
     .then(response => response.json()) // Si esperas una respuesta JSON
     .then(data => {
+        if (data[1]===404){
+            const popBienvenida = document.querySelector(".popup-bienvenida");
+            popBienvenida.style.display = "block";
+            const botonBienvenida = document.querySelector(".popup-boton-bienvenida");
+
+            botonBienvenida.addEventListener("click", function(event) {
+                event.preventDefault();
+                popBienvenida.style.display = "none";
+            });
+        } else {
         // Acceder a los datos JSON y mostrarlos en el HTML
         const resultadosDiv = document.querySelector(".server-icon");
         resultadosDiv.innerHTML = "";
@@ -26,8 +36,8 @@ function servidoresUser(){
                 event.preventDefault(); // Prevenir el comportamiento predeterminado del enlace
                 const tituloServidor = document.querySelector(".titulo-servidor");
                 tituloServidor.textContent = servidor.nombre;
-                    cargarBienvenida(servidor);
-                    obtenerCanales(this.id);
+                obtenerCanales(this.id);
+                cargarBienvenida(servidor);
                     window.history.replaceState({}, '', 'http://127.0.0.1:5500/page/');
                     const nuevaURL = "/page/#"+servidor.token;
                     window.history.pushState({}, '', nuevaURL);
@@ -37,7 +47,7 @@ function servidoresUser(){
             anchorElement.appendChild(imageElement);
             resultadosDiv.appendChild(anchorElement);
         });
-    }) 
+    }}) 
 
     .catch(error => {
         // Manejar el error en caso de que ocurra

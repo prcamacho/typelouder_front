@@ -446,6 +446,16 @@ hr{
               0px -25px 4px  0px rgba(20, 4, 77, 0.2) inset;
 }
 
+.div-inferior-card{
+  display: flex;
+  width: 100%;
+  color: #CCC;
+  justify-content: space-around;
+  height: 50px;
+  align-items: center;
+  font-family: Nunito;
+}
+
 .boton-unirse-canal{
   width: 80px;
   background-color: #081d86;
@@ -805,6 +815,72 @@ hr{
   color: #CCC;
 }
 
+.popup-bienvenida {
+  display: none;
+  position: fixed;
+  top: 50%; /* Centra verticalmente */
+  left: 50%;
+  transform: translate(-50%, -50%); /* Centra horizontal y verticalmente */
+  width: 70%;
+  max-height: 90%;
+  background-color: #011640;
+  border-radius: 20px;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+  font-family: Nunito;
+  overflow-y: auto;
+}
+
+.popup-bienvenida::-webkit-scrollbar {
+  width: 0 !important; /* Oculta las barras de desplazamiento en navegadores WebKit (Chrome, Safari, etc.) */
+}
+
+.popoup-titulo-bienvenida{
+  color: #FFF;
+  text-align: center;
+}
+
+.popup-contenededor-bienvenida{
+  display: flex;
+  margin: auto;
+  font-size: 1.25rem;
+}
+
+.popup-contenedor-lottie{
+  width: 50%;
+}
+
+.popup-lottie-bienvenida{
+  width: 100%;
+}
+
+.popup-contenido-bienvenida{
+  color: #CCC;
+  margin: auto;
+  padding: 0 20px;
+  text-align: justify;
+  width: 50%;
+}
+
+.popup-boton-bienvenida{
+  width: 200px;
+  margin: 20px auto;
+  padding: 15px;
+  background-color: #1D79F2;
+  border-radius: 30px;
+  text-align: center;
+  font-size: 1.3rem;
+  color: #f5f5f5;
+  cursor: pointer;
+  box-shadow: 2px 2px 5px #555;
+}
+
+.popup-boton-bienvenida:hover{
+  transform: scale(1.1);
+  transition: 0.3s;
+}
+
 @media (max-width: 768px){
   .div-mensajes{
     padding: 10px;
@@ -823,11 +899,39 @@ hr{
     height: 16px;
   }
 
+  .popup-contenededor-bienvenida{
+    flex-direction: column;
+  }
+
+  .popup-bienvenida{
+    width: 80%;
+  }
+
 }
+
+
 
 @media (max-width: 850px){
   .lottie-bienvenida{
     width: 100%;
-    height: auto;
   }
+}
+
+@media (max-width: 1100px){
+  .popup-bienvenida{
+    width: 80%;
+  }
+
+  .popup-contenededor-bienvenida{
+    flex-direction: column;
+  }
+
+  .popup-contenedor-lottie{
+    width: 90%;
+  }
+
+  .popup-contenido-bienvenida{
+    width: 90%;
+  }
+
 }
