@@ -41,6 +41,13 @@ document.addEventListener("DOMContentLoaded", function () {
     const cerrarBtn = document.createElement('span');
     cerrarBtn.id = 'cerrarBtn';
     cerrarBtn.textContent = '×';
+    
+    // Aplicar estilo CSS al elemento span
+    cerrarBtn.style.color = 'white';
+    
+    // También puedes aplicar otros estilos según sea necesario
+    cerrarBtn.style.fontSize = '24px'; // Tamaño de fuente
+    cerrarBtn.style.fontWeight = 'bold'; // Peso de fuente
     cerrarBtn.addEventListener('click', () => {
         // Ocultar la ventana emergente cuando se hace clic en el botón de cierre
         ventanaEmergente.style.display = 'none';
@@ -55,12 +62,30 @@ document.addEventListener("DOMContentLoaded", function () {
                 { name: "nombre", type: "text" },
                 { name: "descripcion", type: "text" },
                 { name: "imagen", type: "file" },
-                { name: "privado", type: "checkbox"} // Usar 'file' para campos de tipo archivo (imagen en este caso)
+                { name: "categoria", type: "select", values: ["Videojuegos", "Peliculas", "Historia"] },
+                { name: "privado", type: "checkbox" }
             ],
             "CREAR SERVIDOR",
             (form) => {
+                var idCategoria;
+                switch (form.categoria) {
+                    case "Videojuegos":
+                        idCategoria = 1;
+                        break;
+                    case "Peliculas":
+                        idCategoria = 2;
+                        break;
+                    case "Historia":
+                        idCategoria = 3;
+                        break;
+                    default:
+                        idCategoria = 1; // Valor predeterminado si no coincide ninguna opción
+                        break;
+                }
+            
+                // Crear un nuevo objeto formData y establecer "id_categoria"
                 var formData = new FormData();
-                formData.append("id_categoria", 1);
+                formData.append("id_categoria", idCategoria);
                 formData.append("nombre", form.nombre);
                 formData.append("descripcion", form.descripcion);
                 formData.append("privado", form.privado === "off" ? "true" : "false");

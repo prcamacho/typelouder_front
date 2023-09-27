@@ -1,3 +1,5 @@
+import { performFetch } from "../servidor/requestTemplate.js";
+import { crearFormulario } from "../servidor/crearServidor.js";
 
 function obtenerMensajesDelCanal(id_canal, nombre_canal) {
     // Realizar una solicitud GET a la URL deseada
@@ -79,6 +81,118 @@ function obtenerMensajesDelCanal(id_canal, nombre_canal) {
             divContenedorMensaje.className = "div-contenedor-mensaje"
             divUsernameFecha.className = "div-username-fecha";
             divMensaje.className = "div-mensajes";
+
+            //ELIMANR EDITAR SECCION
+
+            const botonEditarMensaje = document.createElement("button");
+            botonEditarMensaje.textContent = "Editar Mensaje";
+            botonEditarMensaje.style.backgroundColor = "#8d99ae"; // Fondo verde celoso
+            botonEditarMensaje.style.color = "white"; // Texto blanco
+            botonEditarMensaje.style.border = "none"; // Sin borde
+            botonEditarMensaje.style.cursor = "pointer"; // Cambiar el cursor a una mano
+            botonEditarMensaje.style.borderRadius = "3px"
+            
+            const botonBorrarMensaje = document.createElement("button");
+            botonBorrarMensaje.textContent = "Borrar Mensaje";
+            botonBorrarMensaje.style.backgroundColor = "#6a040f"; // Fondo rojo
+            botonBorrarMensaje.style.color = "white"; // Texto blanco
+            botonBorrarMensaje.style.border = "none"; // Sin borde
+            botonBorrarMensaje.style.cursor = "pointer"; // Cambiar el cursor a una mano
+            botonBorrarMensaje.style.borderRadius = "3px"
+            
+            
+            botonEditarMensaje.textContent="E"
+            botonBorrarMensaje.textContent="D"
+            divImagenMensaje.appendChild(botonEditarMensaje);
+            divImagenMensaje.appendChild(botonBorrarMensaje);
+
+            botonBorrarMensaje.addEventListener("click", ()=>{
+                const fetchData = {
+                    url: `http://127.0.0.1:8000/mensajes/eliminar/${mensaje.id}`, // URL of the API where you want to send the form
+                    method: 'DELETE', //PUT
+                    headers: {
+                         // Acepta respuestas en formato JSON (puedes ajustar esto según tu necesidad)
+                        
+                    },
+                    body: {} // Use the FormData object as the request body
+                };
+
+                performFetch(fetchData)
+                .then(responseData => {
+                    ventanaEmergente.style.display = 'none';
+                    console.log(responseData); // Handle the response data here
+                    obtenerMensajesDelCanal(id_canal, nombre_canal);
+                })
+                .catch(error => {
+                    console.error('Error:', error); // Handle errors here
+                });
+            })
+
+            const ventanaEmergente = document.querySelector('#ventanaEmergente');
+
+            // Agregar el botón de cierre "X" en la esquina superior derecha
+            const cerrarBtn = document.createElement('span');
+            cerrarBtn.id = 'cerrarBtn';
+            cerrarBtn.textContent = '×';
+            
+            // Aplicar estilo CSS al elemento span
+            cerrarBtn.style.color = 'white';
+            
+            // También puedes aplicar otros estilos según sea necesario
+            cerrarBtn.style.fontSize = '24px'; // Tamaño de fuente
+            cerrarBtn.style.fontWeight = 'bold'; // Peso de fuente
+
+            cerrarBtn.addEventListener('click', () => {
+                // Ocultar la ventana emergente cuando se hace clic en el botón de cierre
+                ventanaEmergente.style.display = 'none';
+            });
+
+
+            botonEditarMensaje.addEventListener("click", ()=>{
+                let formulario = crearFormulario(
+                    [
+                        { name: "mensaje", type: "text", value: mensaje.mensaje },
+                    ],
+                    "EDITAR MENSAJE",
+                    (form)=> {
+                        var formData = new FormData();
+                        formData.append("mensaje", form.mensaje);
+                        const fetchData = {
+                            url: `http://127.0.0.1:8000/mensajes/editar/${mensaje.id}`, // URL of the API where you want to send the form
+                            method: 'PUT', //PUT
+                            headers: {
+                                 // Acepta respuestas en formato JSON (puedes ajustar esto según tu necesidad)
+                                
+                            },
+                            body: formData // Use the FormData object as the request body
+                        };
+
+                    performFetch(fetchData)
+                        .then(responseData => {
+                            ventanaEmergente.style.display = 'none';
+                            console.log(responseData); // Handle the response data here
+                            obtenerMensajesDelCanal(id_canal, nombre_canal);
+                        })
+                        .catch(error => {
+                            console.error('Error:', error); // Handle errors here
+                        });
+                    }
+                    
+                )
+        // Agregar el formulario al contenedor de la ventana emergente
+        ventanaEmergente.innerHTML = '';
+        
+        // Agregar el botón de cierre en la esquina superior derecha
+        ventanaEmergente.appendChild(cerrarBtn);
+        
+        ventanaEmergente.appendChild(formulario);
+        
+        // Mostrar la ventana emergente
+        ventanaEmergente.style.display = 'block';
+                
+            })
+
+
             
             const imgImagenUser = document.createElement("img");
             const h4Username = document.createElement("h4");

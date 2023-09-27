@@ -35,6 +35,13 @@ function obtenerCanales(servidor_token) {
         const cerrarBtn = document.createElement('span');
         cerrarBtn.id = 'cerrarBtn';
         cerrarBtn.textContent = '×';
+        
+        // Aplicar estilo CSS al elemento span
+        cerrarBtn.style.color = 'white';
+        
+        // También puedes aplicar otros estilos según sea necesario
+        cerrarBtn.style.fontSize = '24px'; // Tamaño de fuente
+        cerrarBtn.style.fontWeight = 'bold'; // Peso de fuente
         cerrarBtn.addEventListener('click', () => {
             // Ocultar la ventana emergente cuando se hace clic en el botón de cierre
             ventanaEmergente.style.display = 'none';
