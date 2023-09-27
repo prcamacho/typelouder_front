@@ -57,7 +57,7 @@ async function cargarUsuario() {
                     { name: "username", type: "text", value: data.username },
                     { name: "nombre", type: "text", value:data.nombre  },
                     { name: "apellido", type: "text", value:data.apellido},
-                    { name: "foto de perfil", type: "file"}, // Usar 'file' para campos de tipo archivo (imagen en este caso)
+                    { name: "fotodeperfil", type: "file"}, // Usar 'file' para campos de tipo archivo (imagen en este caso)
                 ],
                 "EDITAR PERFIL",
                 (form) => {
@@ -65,19 +65,21 @@ async function cargarUsuario() {
                     formData.append("username", form.username);
                     formData.append("nombre", form.nombre);
                     formData.append("apellido", form.apellido);
-                    //formData.append("imagen", form.imagen);
-                
+                    formData.append("imagen", form.fotodeperfil);
+                    
                     // Define the data for the Fetch request
                     const fetchData = {
                         url: 'http://127.0.0.1:8000/users/editar', // URL of the API where you want to send the form
                         method: 'PUT', //PUT
                         headers: {
-                            // Configure Content-Type header for form data with a file
+                             // Acepta respuestas en formato JSON (puedes ajustar esto según tu necesidad)
+                            
                         },
                         body: formData // Use the FormData object as the request body
                     };
                 
                     // Call the performFetch function with the fetchData object
+                    console.log();
                     performFetch(fetchData)
                         .then(responseData => {
                             ventanaEmergente.style.display = 'none';

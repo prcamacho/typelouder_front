@@ -38,7 +38,7 @@ function crearFormulario(campos, titulo, onSubmitCallback) {
     submitButton.textContent = 'ACEPTAR';
 
     form.addEventListener('submit', function (event) {
-        //event.preventDefault();
+        event.preventDefault();
         if (typeof onSubmitCallback === 'function') {
             var formData = {};
             campos.forEach(function (campo) {

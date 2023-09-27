@@ -20,10 +20,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     setTimeout(function() {
         setTimeout(function() {
-          console.log("¡Temporizador de 2 segundos ha terminado!");
           paginacionServidores(1);  
         }, 500);
-        console.log("¡Temporizador de 2 segundos ha terminado!");
         cargarUsuario();
       }, 500);
     

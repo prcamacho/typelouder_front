@@ -1,5 +1,4 @@
 
-
 function obtenerMensajesDelCanal(id_canal, nombre_canal) {
     // Realizar una solicitud GET a la URL deseada
     const h4h3Elements = document.querySelectorAll(".canales-clickleables");
@@ -13,8 +12,7 @@ function obtenerMensajesDelCanal(id_canal, nombre_canal) {
 
         });
     });
-
-
+    
     const seccionDerecha = document.querySelector(".servidor-search");
     seccionDerecha.innerHTML = "";
     const divTituloCanal = document.createElement("div");
@@ -23,6 +21,7 @@ function obtenerMensajesDelCanal(id_canal, nombre_canal) {
     contenedorMensajes.className = 'contenedor-mensajes';
     const seccionMensajes = document.createElement("div");
     seccionMensajes.className = 'seccion-mensajes';
+    seccionMensajes.innerHTML= "";
     //seccionMensajes.style.flexDirection = "column-reverse";
     const divInputMensaje = document.createElement("div");
     divInputMensaje.className = "send-mensaje";
@@ -31,6 +30,7 @@ function obtenerMensajesDelCanal(id_canal, nombre_canal) {
     const inputMensaje = document.createElement("input");
     inputMensaje.className = "input-mensaje";
     inputMensaje.placeholder = "Ingrese mensaje...";
+    inputMensaje.name = "mensaje";
     const botonMensaje = document.createElement("button");
     botonMensaje.className = "boton-mensaje";
     botonMensaje.type = "submit";
@@ -49,7 +49,6 @@ function obtenerMensajesDelCanal(id_canal, nombre_canal) {
     formularioMensaje.appendChild(botonMensaje);
     divInputMensaje.appendChild(formularioMensaje);
 
-
     fetch("http://127.0.0.1:8000/mensajes/" + id_canal, {
         method: "GET",
         credentials: "include" // Configura para incluir automáticamente las cookies si es necesario
@@ -62,6 +61,7 @@ function obtenerMensajesDelCanal(id_canal, nombre_canal) {
     })
     .then(data => {
         if (data[1] === 404){
+            seccionMensajes.innerHTML= "";
             const noMensajes = document.createElement("h1");
             noMensajes.textContent = "Aún no hay mensajes"
             noMensajes.style.color = "#ccc";
@@ -74,7 +74,6 @@ function obtenerMensajesDelCanal(id_canal, nombre_canal) {
             const divContenedorMensaje = document.createElement("div");
             const divUsernameFecha = document.createElement("div");
             const divMensaje = document.createElement("div");
-            
             divTodoMensaje.className = "div-todo-mensaje"
             divImagenMensaje.className = "div-imagen-mensaje";
             divContenedorMensaje.className = "div-contenedor-mensaje"
@@ -120,8 +119,30 @@ function obtenerMensajesDelCanal(id_canal, nombre_canal) {
         return data;
     })
     .catch(error => {
-        console.log("error")
+        console.log(error.message)
     });
+    
+
+    formularioMensaje.addEventListener("submit", function(event) {
+        event.preventDefault();
+        const formData = new FormData();
+        formData.append("mensaje",event.target.mensaje.value);
+        fetch("http://127.0.0.1:8000/mensajes/crear/"+id_canal, {
+            method: "POST",
+            body: formData,
+            credentials: "include" // Configurar para incluir automáticamente las cookies
+        })
+        .then(response => {
+                inputMensaje.value="";
+                obtenerMensajesDelCanal(id_canal, nombre_canal);
+        })
+        .catch(error => {
+            // Manejar el error en caso de que ocurra
+            console.error("Error:", error);
+        });
+    });
+
+
 }
 
 

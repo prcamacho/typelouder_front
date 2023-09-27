@@ -650,6 +650,7 @@ hr{
   justify-content: space-between;
   margin: 0;
   width: 100%;
+  gap: 10px;
 }
 
 .h4-user-mensaje{
