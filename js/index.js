@@ -63,24 +63,45 @@ document.addEventListener("DOMContentLoaded", function () {
                 { name: "nombre", type: "text" },
                 { name: "descripcion", type: "text" },
                 { name: "imagen", type: "file" },
-                { name: "categoria", type: "select", values: ["Videojuegos", "Peliculas", "Historia"] },
-                { name: "privado", type: "checkbox" }
+                { name: "categoria", type: "select", values: ['Deporte', 'Arte', 'Música', 'Video Juegos', 'Literatura', 'Películas', 'Cocina', 'Mascotas', 'Tecnología', 'Varios'] },
+                // { name: "privado", type: "checkbox" }
             ],
             "CREAR SERVIDOR",
             (form) => {
                 var idCategoria;
                 switch (form.categoria) {
-                    case "Videojuegos":
+                    case 'Deporte':
                         idCategoria = 1;
                         break;
-                    case "Peliculas":
+                    case 'Arte':
                         idCategoria = 2;
                         break;
-                    case "Historia":
+                    case 'Música':
                         idCategoria = 3;
                         break;
+                    case 'Video Juegos':
+                        idCategoria = 4;
+                        break;
+                    case 'Literatura':
+                        idCategoria = 5;
+                        break;
+                    case 'Películas':
+                        idCategoria = 6;
+                        break;
+                    case 'Cocina':
+                        idCategoria = 7;
+                        break;
+                    case 'Mascotas':
+                        idCategoria = 8;
+                        break;
+                    case 'Tecnología':
+                        idCategoria = 9;
+                        break;
+                    case 'Varios':
+                        idCategoria = 10;
+                        break;
                     default:
-                        idCategoria = 1; // Valor predeterminado si no coincide ninguna opción
+                        idCategoria = 10; // Valor predeterminado si no coincide ninguna opción
                         break;
                 }
             
