@@ -137,8 +137,7 @@ function obtenerMensajesDelCanal(id_canal, nombre_canal) {
             
             botonEditarMensaje.textContent="E"
             botonBorrarMensaje.textContent="D"
-            divImagenMensaje.appendChild(botonEditarMensaje);
-            divImagenMensaje.appendChild(botonBorrarMensaje);
+
 
             botonBorrarMensaje.addEventListener("click", ()=>{
                 const fetchData = {
@@ -246,7 +245,9 @@ function obtenerMensajesDelCanal(id_canal, nombre_canal) {
             if (mensaje.usuario.id === parseInt(idUsuario.id)){
                 divTodoMensaje.style.alignSelf = "end";
                 divTodoMensaje.style.backgroundColor = "#010931";
-                divTodoMensaje.style.flexDirection = "row-reverse";   
+                divTodoMensaje.style.flexDirection = "row-reverse";
+                divImagenMensaje.appendChild(botonEditarMensaje);
+                divImagenMensaje.appendChild(botonBorrarMensaje);   
             }
 
             divUsernameFecha.appendChild(h4Username);
@@ -272,6 +273,7 @@ function obtenerMensajesDelCanal(id_canal, nombre_canal) {
     
 
     formularioMensaje.addEventListener("submit", function(event) {
+        alert("jolas")
         event.preventDefault();
         const formData = new FormData();
         formData.append("mensaje",event.target.mensaje.value);
