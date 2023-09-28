@@ -17,6 +17,19 @@ function obtenerCanales(servidor_token) {
         return response.json(); // Si esperas una respuesta JSON
     })
     .then(data => {
+    
+        const tituloCategoria = document.querySelector(".contenedor-categoria");
+        tituloCategoria.style.display = "none";
+        const listaCategoria = document.querySelector(".lista-categorias");
+        listaCategoria.style.display = "none";
+        const contenedorTitulo = document.querySelector(".contenedor-titulo");
+        contenedorTitulo.style.display = "flex";
+        const contenedorCanales = document.querySelector(".contenedor-canales");
+        contenedorCanales.style.display = "block";
+        const tituloServidorMedio = document.querySelector(".titulo-servidor");
+        tituloServidorMedio.textContent = data[0][0].servidor.nombre;
+
+
         const miDiv = document.querySelector(".canales");
         miDiv.innerHTML = "";
         miDiv.classList.add("contenedor-canales"); 

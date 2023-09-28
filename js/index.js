@@ -4,6 +4,7 @@ import { cargarUsuario } from "./user/cargarUsuario.js";
 import { paginacionServidores } from "./servidor/paginacionServidor.js";
 import { servidoresUser } from "./user/servidorUser.js";
 import { like_servidor } from "./servidor/likeServidor.js";
+import { categoria_servidor } from "./servidor/categoriaServidores.js";
 // import { obtenerCanales } from "./servidor/cargarCanales.js";
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -182,6 +183,33 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 });
+
+const divCategorias = document.querySelectorAll(".img-nombre-categoria");
+
+function handleClick(event) {
+    const divCategoria = event.currentTarget;
+        divCategorias.forEach((div) => {
+            div.classList.remove("canal-seleccionado");
+        });
+    divCategoria.classList.add("canal-seleccionado");
+    const idCategoriaSeleccionada = divCategoria.id;
+    const match = idCategoriaSeleccionada.match(/\d+/);
+    if (match) {
+        const idCategoriaObtenida = parseInt(match[0]);
+        if (idCategoriaObtenida === 0) {
+            paginacionServidores(1);
+        } else {
+            categoria_servidor(idCategoriaObtenida);
+        }
+    } else {
+        console.log("El ID del elemento no contiene un número.");
+    }
+}
+divCategorias.forEach((div) => {
+    const contenidoCategoria = div.querySelector(".contenido-categoria");
+    div.addEventListener("click", handleClick);
+});
+
 
 
 

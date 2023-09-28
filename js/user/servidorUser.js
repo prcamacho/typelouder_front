@@ -24,7 +24,6 @@ function servidoresUser(){
         // Iterar sobre el arreglo de objetos
         data[0].forEach(servidor => {
             // Crear elementos HTML para mostrar la información del servidor
-
             const imageElement = document.createElement("img");
             imageElement.className = "server-icon";
             imageElement.src = servidor.imagen;
@@ -34,6 +33,15 @@ function servidoresUser(){
 
             anchorElement.addEventListener("click", function(event) {
                 event.preventDefault(); // Prevenir el comportamiento predeterminado del enlace
+                const tituloCategoria = document.querySelector(".contenedor-categoria");
+                tituloCategoria.style.display = "none";
+                const listaCategoria = document.querySelector(".lista-categorias");
+                listaCategoria.style.display = "none";
+                const contenedorTitulo = document.querySelector(".contenedor-titulo");
+                contenedorTitulo.style.display = "flex";
+                const contenedorCanales = document.querySelector(".contenedor-canales");
+                contenedorCanales.style.display = "block";
+
                 const tituloServidor = document.querySelector(".titulo-servidor");
                 tituloServidor.textContent = servidor.nombre;
                 obtenerCanales(this.id);
