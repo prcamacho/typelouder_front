@@ -210,6 +210,55 @@ divCategorias.forEach((div) => {
     div.addEventListener("click", handleClick);
 });
 
+const divFlechaExpandir = document.querySelector(".contenedor-flecha-expandir");
+const imagenFlechaExpandir = divFlechaExpandir.querySelector(".flecha-expandir");
+const divBarraLateral = document.querySelector(".lateral-var");
+const divSeccionMedia = document.querySelector(".seccion-media");
+const divSeccionDerecha = document.querySelector(".servidor-search");
+let girado = false;
+
+divFlechaExpandir.addEventListener("click", () => {
+  if (girado) {
+    // Rotar la flecha
+    imagenFlechaExpandir.style.transition = "transform 0.5s ease-in-out";
+    imagenFlechaExpandir.style.transform = "rotate(0deg)";
+    divFlechaExpandir.style.transition = "left 0.5s ease-in-out";
+    divFlechaExpandir.style.left = "25px"; 
+    // Ocultar .lateral-var y .seccion-media
+    divBarraLateral.style.transition = "width 0.5s ease-in-out";
+    divBarraLateral.style.width = "0px";
+    divBarraLateral.style.display = "none";
+
+    divSeccionMedia.style.transition = "width 0.5s ease-in-out";
+    divSeccionMedia.style.width = "0px";
+    //divSeccionMedia.style.display = "none";
+
+    divSeccionDerecha.style.width = "100%";
+    divSeccionDerecha.style.transition = "width 0.5s ease-in-out";
+  } else {
+    // Restaurar la flecha
+    imagenFlechaExpandir.style.transition = "transform 0.5s ease-in-out";
+    imagenFlechaExpandir.style.transform = "rotate(180deg)";
+    divFlechaExpandir.style.transition = "left 0.5s ease-in-out";
+    divFlechaExpandir.style.left = "330px";
+    // Mostrar .lateral-var y .seccion-media
+    divBarraLateral.style.transition = "width 0.5s ease-in-out";
+    divBarraLateral.style.width = "80px";
+    divBarraLateral.style.display = "flex";
+
+    divSeccionMedia.style.transition = "width 0.5s ease-in-out";
+    divSeccionMedia.style.width = "250px";
+    //divSeccionMedia.style.display = "block";
+
+    // Restaurar el ancho original de .servidor-search
+    divSeccionDerecha.style.transition = "width 0.5s ease-in-out";
+    divSeccionDerecha.style.width = "calc(100% - 80px)";
+  }
+  
+  // Cambiar el estado
+  girado = !girado;
+});
+
 
 
 

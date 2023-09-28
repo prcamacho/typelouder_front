@@ -13,12 +13,12 @@ html, body {
     height: 100vh;
     margin: 0;
     padding: 0;
-    /* overflow-y: auto; */
+    overflow-y: auto; 
   }
 
-  /* .main-container::-webkit-scrollbar {
-    width: 0 !important; /* Oculta las barras de desplazamiento en navegadores WebKit (Chrome, Safari, etc.) 
-  } */
+  .main-container::-webkit-scrollbar {
+    width: 0 !important;  
+  }
 
   /*BARRA LAETERAL IZQUIERDA*/
 
@@ -915,6 +915,18 @@ hr{
   transition: 0.3s;
 }
 
+.contenedor-flecha-expandir {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 25px;
+  transform: translate(-50%, -50%);
+}
+
+.flecha-expandir{
+  width: 50px;
+}
+
 @media (max-width: 768px){
   .div-mensajes{
     padding: 10px;
@@ -939,6 +951,23 @@ hr{
 
   .popup-bienvenida{
     width: 80%;
+  }
+
+  .lateral-var{
+    width: 0;
+    display: none;
+  }
+
+  .seccion-media {
+    width: 0;
+  }
+
+  .servidor-search{
+    width: 100%;
+  }
+
+  .contenedor-flecha-expandir{
+    display: flex;
   }
 
 }
